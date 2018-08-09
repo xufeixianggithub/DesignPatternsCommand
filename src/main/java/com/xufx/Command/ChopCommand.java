@@ -3,10 +3,12 @@ package com.xufx.Command;
 import com.xufx.Interfaces.Command;
 import com.xufx.Interfaces.CookApi;
 
+import java.io.Serializable;
+
 /**
  * 命令对象，绿豆排骨煲
  */
-public class ChopCommand implements Command {
+public class ChopCommand implements Command,Serializable {
     /**
      * 持有具体做菜的厨师的对象
      */
