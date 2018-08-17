@@ -8,4 +8,8 @@ public interface Command {
      * 执行命令对应的操作
      */
     public void execute();
+
+    public  void setCookApi(CookApi cookApi);
+
+    public  int getTableNum();
 }

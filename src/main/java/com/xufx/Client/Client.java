@@ -1,25 +1,31 @@
 package com.xufx.Client;
 
-import com.xufx.Command.OpenCommand;
-import com.xufx.Interfaces.MainBoardApi;
-import com.xufx.Invoker.Box;
-import com.xufx.Receiver.MsiMainBoard;
+import com.xufx.Command.ChopCommand;
+import com.xufx.Command.DuckCommand;
+import com.xufx.Command.MenuCommand;
+import com.xufx.Invoker.Waiter;
+import com.xufx.Manager.CookManager;
 
 public class Client {
     public static void main(String[] args) {
-        //1：把命令和真正的实现组合起来，相当于在组装机器，
-        //把机箱上按钮的连接线插接到主板上。
-        MainBoardApi mainBoard = new MsiMainBoard();
-        OpenCommand openCommand = new OpenCommand(mainBoard);
+        CookManager.runCookManager();
+
+        for(int i=1;i<=5;i++){
+            Waiter waiter=new Waiter();
 
 
-        //真正的客户端测试
+            ChopCommand chopCommand=new ChopCommand(i);
 
-        //2：为机箱上的按钮设置对应的命令，让按钮知道该干什么
-        Box box = new Box();
-        box.setOpenCommand(openCommand);
+            DuckCommand duckCommand=new DuckCommand(i);
 
-        //3：然后模拟按下机箱上的按钮
-        box.openButtonPressed();
+
+            waiter.orderDish(chopCommand);
+
+            waiter.orderDish(duckCommand);
+
+            waiter.overOrder();
+
+        }
+
     }
 }
